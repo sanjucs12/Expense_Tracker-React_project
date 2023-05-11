@@ -1,0 +1,17 @@
+.EachListItem-container {
+  /* background-color: rgb(233, 239, 239); */
+  width: 50%;
+}
+
+.EachListItem-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 5%;
+  font-size: larger;
+}
+
+.EachListItem-container ul {
+  padding: 1%;
+  margin: 3%;
+}

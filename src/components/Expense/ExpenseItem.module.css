@@ -1,7 +1,60 @@
 .ExpenseItem-li {
+  width: 100%;
+  font-size: 16px;
+  background-color: rgba(50, 19, 19, 0.83);
+
+  box-shadow: 1px 1px 3px 1px rgb(225, 7, 7);
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  white-space: 2%;
-  max-width: 100%;
+  text-align: right;
+  color: aliceblue;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 2px;
+}
+.ExpenseItem-li-container {
+  padding: 1%;
+}
+.ExpenseItem-li-container p {
+  padding: 1.5%;
+}
+.btn-cont {
+  width: 30%;
+  display: flex;
+}
+.ExpenseItem-li-container button {
+  /* background-color: #fff000; */
+  border-radius: 12px;
+  /* color: #000; */
+  cursor: pointer;
+  font-weight: bold;
+  padding: 3px 5px;
+  text-align: center;
+  transition: 300ms;
+  width: 70%;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 13px;
+  user-select: none;
+
+  touch-action: manipulation;
+}
+
+.edit-btn:hover,
+.edit-btn:active {
+  outline: 0;
+  background: #fbf13f;
+}
+
+.delete-btn {
+  color: aliceblue;
+  background-color: rgba(234, 87, 87, 0.892);
+}
+.edit-btn {
+  background-color: rgb(7, 218, 147);
+}
+.delete-btn:hover,
+.delete-btn:active {
+  outline: 0;
+  background: #fd2929;
 }

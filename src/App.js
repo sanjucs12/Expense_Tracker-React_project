@@ -8,6 +8,7 @@ import AuthContex from "./Context/CreateContext";
 import ContactDetails from "./components/Login/ContactDetails";
 import LoadingSpinner from "./components/Loadingspinner/LoadingSpinner";
 import ExpenseForm from "./components/Expense/ExpenseForm";
+import ExpenseContextProvider from "./Context/ExpenseContext/ExpenseContextProvider";
 function App() {
   const ctx = useContext(AuthContex);
   //console.log(ctx);
@@ -29,7 +30,9 @@ function App() {
           <AuthForm></AuthForm>
         </Route>
         <Route path="/expenseform" exact>
-          <ExpenseForm></ExpenseForm>
+          <ExpenseContextProvider>
+            <ExpenseForm></ExpenseForm>
+          </ExpenseContextProvider>
         </Route>
 
         <Route path="*">
