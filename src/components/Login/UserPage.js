@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import classes from "./UserPage.module.css";
 import AuthContex from "../../Context/CreateContext";
 
@@ -15,7 +15,7 @@ const UserPage = (props) => {
     };
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+//import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom/cjs/react-router-dom";
 import UserPage from "./components/Login/UserPage";
 // import EmailcontextProvider from "./Context/emailContextprovider";
 import AuthForm from "./components/Login/Login";

@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import EmailcontextProvider from "./Context/emailContextprovider";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom";
 import "./index.css";
 import App from "./App";
 

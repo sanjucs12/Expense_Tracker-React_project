@@ -1,6 +1,7 @@
 import AuthContex from "./CreateContext";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 const EmailcontextProvider = (props) => {
   const History = useHistory();
   const [loginStates, setloginStates] = useState(false);
@@ -10,7 +11,7 @@ const EmailcontextProvider = (props) => {
     console.log("loginHandler", obj);
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),
@@ -39,7 +40,7 @@ const EmailcontextProvider = (props) => {
     //console.log("signupHandler", item);
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),
@@ -65,7 +66,7 @@ const EmailcontextProvider = (props) => {
     try {
       // console.log(obj);
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),
@@ -99,7 +100,7 @@ const EmailcontextProvider = (props) => {
     History.push("/loading");
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),

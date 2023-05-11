@@ -13,7 +13,7 @@ const ExpenseItem = (props) => {
     // console.log("deleteButtonHandler", props);
     // try {
     //   const response = await fetch(
-    //     `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/expense/${props.id}.json`,
+    //     `https://expense-tracker-react-ap-92e37-default-rtdb.firebaseio.com/expense/${props.id}.json`,
     //     {
     //       method: "DELETE",
 
