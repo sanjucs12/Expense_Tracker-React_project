@@ -31,3 +31,22 @@
   font-size: large;
   cursor: pointer;
 }
+.verify-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.verify-container img {
+  margin: 3% auto;
+  width: 25%;
+  border-radius: 70%;
+}
+.verify-container button {
+  margin: 3% auto;
+  background-color: transparent;
+  color: #086a22;
+  width: 15%;
+  font-size: large;
+  padding: 2%;
+  cursor: pointer;
+}
