@@ -1,0 +1,7 @@
+.ExpenseItem-li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  white-space: 2%;
+  max-width: 100%;
+}

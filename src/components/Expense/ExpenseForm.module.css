@@ -1,0 +1,53 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+.ExpenseForm-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: rgb(235, 225, 225);
+}
+.ExpenseForm {
+  display: flex;
+  margin: 6% auto;
+  flex-direction: column;
+  width: 50%;
+  padding: 40px 30px;
+  background: white;
+  box-shadow: 0px 0px 3px rgb(208 208 208 / 30%);
+  border-radius: 4px;
+}
+.ExpenseForm label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+.ExpenseForm input,
+.ExpenseForm select {
+  width: 100%;
+  padding: 0.625rem;
+  resize: vertical;
+  border: 0.5px solid rgba(139, 130, 135, 0.8);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.ExpenseForm button {
+  width: 100%;
+
+  padding: 8px;
+  background: #1b5550;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 4px;
+
+  border: 1px solid transparent;
+
+  letter-spacing: 0.5px;
+  color: #fff;
+  cursor: pointer;
+}

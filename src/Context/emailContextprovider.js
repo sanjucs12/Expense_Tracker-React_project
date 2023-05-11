@@ -27,7 +27,8 @@ const EmailcontextProvider = (props) => {
         localStorage.setItem("id", data.idToken);
         //console.log("successfully signIn");
         setloginStates(true);
-        History.replace("/userpage");
+        // History.replace("/userpage");
+        History.replace("/expenseform");
       }
     } catch (error) {
       alert(error.message);
