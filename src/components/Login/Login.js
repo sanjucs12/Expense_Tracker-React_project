@@ -13,11 +13,11 @@ const AuthForm = () => {
   const isForgetpassword = useSelector((state) => state.auth.isForgetpassword);
 
   const loginURL =
-    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM";
+    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA";
   const signupUrl =
-    "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM";
+    "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA";
   const RestUrl =
-    "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM";
+    "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA";
   const enteredEmail = useRef(null);
   const enteredPassword = useRef(null);
   const enteredconfirmPassword = useRef(null);

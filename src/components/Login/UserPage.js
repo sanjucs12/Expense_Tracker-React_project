@@ -13,7 +13,7 @@ const UserPage = (props) => {
     };
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),

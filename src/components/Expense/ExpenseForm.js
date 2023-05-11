@@ -34,7 +34,7 @@ const ExpenseForm = () => {
     }
     try {
       const response = await fetch(
-        `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/${emailId}/${
+        `https://expense-tracker-react-ap-92e37-default-rtdb.firebaseio.com/${emailId}/${
           isupdate ? itemid : ""
         }.json`,
         {
@@ -65,7 +65,7 @@ const ExpenseForm = () => {
     const ExpenseFormHandler = async () => {
       try {
         const response = await fetch(
-          `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/${emailId}.json`,
+          `https://expense-tracker-react-ap-92e37-default-rtdb.firebaseio.com/${emailId}.json`,
           {
             method: "GET",
             headers: {

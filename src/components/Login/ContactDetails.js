@@ -13,7 +13,7 @@ const ContactDetails = () => {
     const getuserData = async () => {
       try {
         const response = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
           {
             method: "POST",
             body: JSON.stringify({
@@ -55,7 +55,7 @@ const ContactDetails = () => {
     try {
       // console.log(obj);
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
         {
           method: "POST",
           body: JSON.stringify(obj),
