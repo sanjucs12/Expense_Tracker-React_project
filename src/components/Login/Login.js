@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import classes from "./Login.module.css";
 import AuthContex from "../../Context/CreateContext";
 
@@ -8,6 +8,11 @@ const AuthForm = () => {
   const enteredEmail = useRef(null);
   const enteredPassword = useRef(null);
   const enteredconfirmPassword = useRef(null);
+  useEffect(() => {
+    if (ctx.loginState) {
+      setisLogin(true);
+    }
+  }, []);
 
   const SubmitHandler = (event) => {
     event.preventDefault();
@@ -24,9 +29,10 @@ const AuthForm = () => {
       obj.password === confirmPassword
         ? ctx.signup(obj)
         : console.log("please enter valid password");
+
       //console.log("succesfully signup", obj);
     }
-    if (isLogin && obj.password.length.trim() >= 6) {
+    if (isLogin && obj.password.length >= 6) {
       //console.log("succesfully sigin", obj);
       ctx.login(obj);
     }

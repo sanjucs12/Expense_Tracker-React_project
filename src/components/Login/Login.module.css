@@ -1,66 +1,66 @@
 .main-container {
-    width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(
-      45deg,
-      rgb(221, 239, 234) 41%,
-      rgb(242, 206, 218) 66%
-    );
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .email-container {
-    margin-top: 15px;
-    height: 24rem;
-    border-radius: 19px;
-    background-color: rgba(246, 255, 253, 0.644);
-    box-shadow: 5px 5px 25px rgba(225, 181, 163, 0.758);
-    color: rgb(15, 14, 14);
-  }
-  
-  .form-email input {
-    font-size: 15px;
-    display: block;
-    border: none;
-    padding: 13px;
-    border-bottom: 0.5px solid #aaa;
-    margin: 10px auto;
-    outline: none;
-    width: 320px;
-    background: transparent;
-  }
-  
-  .form-email button {
-    width: 50%;
-    margin-top: 15px;
-    margin-left: 25px;
-    padding: 9px;
-    border: none;
-    background-color: rgb(17, 86, 123);
-    color: aliceblue;
-    box-shadow: 1px 5px 24px rgb(237, 174, 174, 0.6);
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: large;
-  }
-  
-  .signup-btn:hover {
-    cursor: pointer;
-    background-color: 1px rgb(123, 123, 231);
-  }
-  
-  .email-container h1 {
-    text-align: center;
-    letter-spacing: 0.5px;
-    opacity: 1;
-  }
-  .toggle {
-    margin-top: 1rem;
-    background-color: transparent;
-    color: #9f5ccc;
-    border: none;
-    padding: 0.15rem 1.5rem;
-    font-size: large;
-  }
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    45deg,
+    rgb(221, 239, 234) 41%,
+    rgb(242, 206, 218) 66%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.email-container {
+  margin-top: 15px;
+  height: 24rem;
+  border-radius: 19px;
+  background-color: rgba(246, 255, 253, 0.644);
+  box-shadow: 5px 5px 25px rgba(225, 181, 163, 0.758);
+  color: rgb(15, 14, 14);
+}
+
+.form-email input {
+  font-size: 15px;
+  display: block;
+  border: none;
+  padding: 13px;
+  border-bottom: 0.5px solid #aaa;
+  margin: 10px auto;
+  outline: none;
+  width: 320px;
+  background: transparent;
+}
+
+.form-email button {
+  width: 50%;
+  margin-top: 15px;
+  margin-left: 25px;
+  padding: 9px;
+  border: none;
+  background-color: rgb(17, 86, 123);
+  color: aliceblue;
+  box-shadow: 1px 5px 24px rgb(237, 174, 174, 0.6);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: large;
+}
+
+.signup-btn:hover {
+  cursor: pointer;
+  background-color: 1px rgb(123, 123, 231);
+}
+
+.email-container h1 {
+  text-align: center;
+  letter-spacing: 0.5px;
+  opacity: 1;
+}
+.toggle {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #9f5ccc;
+  border: none;
+  padding: 0.15rem 1.5rem;
+  font-size: large;
+}
