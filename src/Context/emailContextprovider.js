@@ -86,12 +86,18 @@ const EmailcontextProvider = (props) => {
       console.log(error);
     }
   };
+  const loginStateHandler = () => {
+    localStorage.removeItem("id");
+    setloginStates(false);
+    History.push("/login");
+  };
 
   return (
     <AuthContex.Provider
       value={{
         login: loginHandler,
         signup: signupHandler,
+        loginStatefunction: loginStateHandler,
         loginState: loginStates,
         updateUser: updateUserHandler,
       }}
