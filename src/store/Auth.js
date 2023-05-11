@@ -5,6 +5,8 @@ const initialAuthstate = {
   isForgetpassword: false,
   logid: null,
   isSignup: false,
+  loginState: false,
+  loginToken: null,
 };
 
 const AuthSlice = createSlice({
@@ -24,6 +26,10 @@ const AuthSlice = createSlice({
     loginid(state, action) {
       // state.logid = action.payload;
       console.log(action.payload);
+    },
+    setLoginsate(state, action) {
+      state.loginState = !state.loginState;
+      state.loginToken = action.payload;
     },
   },
 });

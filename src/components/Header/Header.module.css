@@ -6,6 +6,9 @@
   /* margin: 0 auto; */
   /* padding: 0 3px; */
 }
+.container-header h3 {
+  color: rgb(255, 255, 255);
+}
 .container-header header {
   background: #347171;
   height: 50px;
@@ -46,28 +49,34 @@
   color: #6fb98f;
 }
 
-.Premium {
+/* .Premium {
+  border-radius: 20px;
   background-color: rgb(255, 220, 19);
-}
-.Premium button {
-  border-radius: 12px;
-  /* color: #000; */
-  cursor: pointer;
-  font-weight: bold;
-  padding: 15px 25px;
-  text-align: start;
-  transition: 300ms;
-  width: 70%;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 13px;
-  user-select: none;
-  background-color: transparent;
+} */
+.Premium {
+  border: none;
 
-  touch-action: manipulation;
+  border-radius: 2px;
+  padding: 7px;
+  margin: 4px;
+  cursor: pointer;
+  background-color: #ffea00;
+  transition: background-color 1s ease;
+  font-weight: bold;
+  color: #000;
 }
 /* .Premium :hover,
 .Premium :active {
   outline: 0;
   background-color: #fbf13f;
 } */
+.logout {
+  border: none;
+
+  border-radius: 2px;
+  padding: 7px;
+  margin: 4px;
+  cursor: pointer;
+  background-color: #d9d4e4;
+  transition: background-color 1s ease;
+}

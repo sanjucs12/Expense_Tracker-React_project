@@ -21,6 +21,7 @@ const AuthForm = () => {
   const enteredEmail = useRef(null);
   const enteredPassword = useRef(null);
   const enteredconfirmPassword = useRef(null);
+  let Error;
   // LOGIN and SIGNUP handler
   const SubmitHandler = async (event) => {
     event.preventDefault();
@@ -29,7 +30,9 @@ const AuthForm = () => {
       password: enteredPassword.current.value,
       returnSecureToken: true,
     };
-
+    if (!isLogin && obj.password !== enteredconfirmPassword.current.value) {
+      return;
+    }
     try {
       const response = await fetch(isLogin ? loginURL : signupUrl, {
         method: "POST",
@@ -42,12 +45,14 @@ const AuthForm = () => {
       if (data.error) {
         throw new Error(data.error.message);
       } else {
-        localStorage.setItem("id", data.idToken);
-        // setloginStates(true);
-        // History.replace("/expenseform");
-        isLogin
-          ? History.replace("/expenseform")
-          : Dispatch(AuthSliceAction.setisLogin());
+        !isLogin && Dispatch(AuthSliceAction.setisLogin());
+
+        if (isLogin) {
+          localStorage.setItem("id", data.idToken);
+          localStorage.setItem("islogin", "true");
+          localStorage.setItem("mailid", obj.email);
+          Dispatch(AuthSliceAction.setLoginsate(data.idToken));
+        }
       }
     } catch (error) {
       alert(error.message);

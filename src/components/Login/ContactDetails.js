@@ -40,7 +40,7 @@ const ContactDetails = () => {
 
   // form handler function
 
-  const ContactDetailsHandle = (event) => {
+  const ContactDetailsHandle = async (event) => {
     event.preventDefault();
     const obj = {
       idToken: localStorage.getItem("id"),
@@ -48,8 +48,33 @@ const ContactDetails = () => {
       photoUrl: enteredUrl.current.value,
       returnSecureToken: true,
     };
-    if (obj.displayName !== "" && obj.photoUrl !== " ") {
-      ctx.updateUser(obj);
+    if (obj.displayName === "" && obj.photoUrl === " ") {
+      // ctx.updateUser(obj);
+      return;
+    }
+    try {
+      // console.log(obj);
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        {
+          method: "POST",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error.message);
+      } else {
+        //console.log(data.idToken);
+        console.log("User has successfullyupdated.", data);
+        // History.push("/userpage");
+        alert("User has successfully updated,");
+      }
+    } catch (error) {
+      console.log(error);
     }
     //console.log("ContactDetailsHandle");
   };

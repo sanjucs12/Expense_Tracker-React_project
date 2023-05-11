@@ -13,20 +13,28 @@ const ExpenseForm = () => {
   const enteredAmount = useRef(null);
   const enteredCategorys = useRef(null);
   const enteredDescription = useRef(null);
-
+  let emailId = localStorage.getItem("mailid").replace(/[&@.]/g, "");
   const ExpenseFormHandler = async (event) => {
     event.preventDefault();
     //console.log(enteredCategorys.current.value);
     let itemid = localStorage.getItem("itemid");
+
     // console.log(itemid);
     const ExpenseObject = {
       amount: enteredAmount.current.value,
       categorys: enteredCategorys.current.value,
       description: enteredDescription.current.value,
     };
+    if (
+      ExpenseObject.amount === "" ||
+      ExpenseObject.categorys === "" ||
+      ExpenseObject.description === ""
+    ) {
+      return;
+    }
     try {
       const response = await fetch(
-        `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/expense/${
+        `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/${emailId}/${
           isupdate ? itemid : ""
         }.json`,
         {
@@ -40,6 +48,7 @@ const ExpenseForm = () => {
       const data = await response.json();
 
       Dispatch(ExpenseSliceAction.updateList(ExpenseObject));
+      Dispatch(ExpenseSliceAction.setIsupdate(false));
 
       enteredAmount.current.value = null;
       enteredCategorys.current.value = null;
@@ -56,7 +65,7 @@ const ExpenseForm = () => {
     const ExpenseFormHandler = async () => {
       try {
         const response = await fetch(
-          "https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/expense.json",
+          `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/${emailId}.json`,
           {
             method: "GET",
             headers: {

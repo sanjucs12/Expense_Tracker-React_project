@@ -1,29 +1,26 @@
-.dark-btn {
-  background-color: rgb(194, 233, 37);
+.dark-btn button {
+  background-color: rgb(0, 0, 0);
+  box-shadow: 2px 1px 1px white;
+  color: aliceblue;
+  /* border-radius: 20px; */
 }
 .Premium-taggle {
-  border-radius: 12px;
-  background-color: blueviolet;
-  /* color: #000; */
-  cursor: pointer;
+  border: none;
   font-weight: bold;
-  padding: 15px 25px;
-  text-align: start;
-  transition: 300ms;
-  width: 70%;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 13px;
-  user-select: none;
-  background-color: transparent;
-
-  touch-action: manipulation;
+  border-radius: 2px;
+  padding: 7px;
+  margin: 4px;
+  cursor: pointer;
+  /* background-color: #fcffb2; */
+  transition: background-color 1s ease;
 }
 /* .Premium :hover,
   .Premium :active {
     outline: 0;
     background-color: #fbf13f;
   } */
-.light-btn {
-  background-color: rgb(244, 248, 226);
+.light-btn button {
+  /* border-radius: 20px; */
+  color: rgb(6, 11, 14);
+  background-color: rgb(248, 248, 248);
 }
