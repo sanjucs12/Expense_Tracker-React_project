@@ -1,9 +1,18 @@
 import React from "react";
 
 const Dummy = () => {
+  const complateHandler = () => {
+    console.log("completeHandler");
+  };
   return (
     <div className="dummy">
-      <h1>welcome to expense tracker</h1>
+      <header>
+        <p>welcome to expense tracker</p>
+        <div>
+          <p>your profile is incomplete </p>
+          <button onClick={complateHandler}>complete now</button>
+        </div>
+      </header>
     </div>
   );
 };

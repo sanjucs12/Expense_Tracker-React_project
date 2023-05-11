@@ -1,7 +1,11 @@
 import AuthContex from "./CreateContext";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 const EmailcontextProvider = (props) => {
+  const History = useHistory();
   const [loginStates, setloginStates] = useState(false);
+
+  //  LOGIN HANDLER
   const loginHandler = async (obj) => {
     console.log("loginHandler", obj);
     try {
@@ -20,13 +24,16 @@ const EmailcontextProvider = (props) => {
         throw new Error(data.error.message);
       } else {
         // console.log(data.idToken);
-        console.log("successfully signIn");
+        localStorage.setItem("id", data.idToken);
+        //console.log("successfully signIn");
         setloginStates(true);
+        History.replace("/userpage");
       }
     } catch (error) {
       alert(error.message);
     }
   };
+  //SIGNUP HANDLER
   const signupHandler = async (obj) => {
     //console.log("signupHandler", item);
     try {
@@ -52,12 +59,41 @@ const EmailcontextProvider = (props) => {
       alert(error.message);
     }
   };
+  //UPDATE USER DETAILS
+  const updateUserHandler = async (obj) => {
+    try {
+      // console.log(obj);
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        {
+          method: "POST",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error.message);
+      } else {
+        //console.log(data.idToken);
+        console.log("User has successfullyupdated.", data);
+        History.push("/userpage");
+        alert("User has successfully updated,");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContex.Provider
       value={{
         login: loginHandler,
         signup: signupHandler,
         loginState: loginStates,
+        updateUser: updateUserHandler,
       }}
     >
       {props.children}
