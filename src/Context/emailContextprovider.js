@@ -92,6 +92,33 @@ const EmailcontextProvider = (props) => {
     History.push("/login");
   };
 
+  //FORGET PASSWORD HANDLER FUNCTION
+
+  const forgetPasswordhandler = async (obj) => {
+    History.push("/loading");
+    try {
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+        {
+          method: "POST",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error.message);
+      } else {
+        History.push("/login");
+        alert("User has successfully signed up.");
+      }
+    } catch (error) {
+      alert(error.message);
+      History.push("/login");
+    }
+  };
   return (
     <AuthContex.Provider
       value={{
@@ -100,6 +127,7 @@ const EmailcontextProvider = (props) => {
         loginStatefunction: loginStateHandler,
         loginState: loginStates,
         updateUser: updateUserHandler,
+        forgetPassword: forgetPasswordhandler,
       }}
     >
       {props.children}

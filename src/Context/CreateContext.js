@@ -6,5 +6,6 @@ const AuthContex = createContext({
   loginState: false,
   loginStatefunction: () => {},
   updateUser: () => {},
+  forgetPassword: () => {},
 });
 export default AuthContex;

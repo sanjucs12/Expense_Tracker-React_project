@@ -6,6 +6,7 @@ import AuthForm from "./components/Login/Login";
 import AuthContex from "./Context/CreateContext";
 // import Dummy from "./components/Dummy";
 import ContactDetails from "./components/Login/ContactDetails";
+import LoadingSpinner from "./components/Loadingspinner/LoadingSpinner";
 function App() {
   const ctx = useContext(AuthContex);
   //console.log(ctx);
@@ -20,7 +21,9 @@ function App() {
             <UserPage></UserPage>
           </Route>
         )}
-
+        <Route path="/loading">
+          <LoadingSpinner></LoadingSpinner>
+        </Route>
         <Route path="/login" exact>
           <AuthForm></AuthForm>
         </Route>
