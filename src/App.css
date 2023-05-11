@@ -1,0 +1,19 @@
+.dark {
+  background-color: #7d2e93;
+  color: #46045e;
+}
+
+.light {
+  /* background-color: linear-gradient(
+    45deg,
+    rgb(215, 242, 234) 41%,
+    rgb(242, 206, 218) 66%
+  ); */
+  background: linear-gradient(
+    45deg,
+    rgb(230, 239, 237) 41%,
+    rgb(239, 220, 226) 66%
+  );
+}
+.dark {
+}

@@ -58,26 +58,3 @@
   outline: 0;
   background: #fd2929;
 }
-
-.Premium {
-  border-radius: 12px;
-  /* color: #000; */
-  cursor: pointer;
-  font-weight: bold;
-  padding: 3px 5px;
-  text-align: center;
-  transition: 300ms;
-  width: 70%;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 13px;
-  user-select: none;
-  background-color: rgb(255, 220, 19);
-
-  touch-action: manipulation;
-}
-.Premium:hover,
-.Premium:active {
-  outline: 0;
-  background: #fbf13f;
-}

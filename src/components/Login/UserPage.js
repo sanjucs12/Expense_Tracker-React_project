@@ -5,9 +5,7 @@ import AuthContex from "../../Context/CreateContext";
 
 const UserPage = (props) => {
   const ctx = useContext(AuthContex);
-  const logoutButtonHandler = () => {
-    ctx.loginStatefunction();
-  };
+
   const emailverifyHandler = async () => {
     const obj = {
       idToken: localStorage.getItem("id"),
@@ -42,9 +40,6 @@ const UserPage = (props) => {
         <div className={classes["button-container"]}>
           <p>your profile is incomplete </p>
           <button>{<Link to="contactdetails">Complete Now</Link>}</button>
-        </div>
-        <div className={classes["button-container"]}>
-          <button onClick={logoutButtonHandler}>logout</button>
         </div>
       </header>
       <div className={classes["verify-container"]}>

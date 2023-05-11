@@ -50,7 +50,7 @@ const ExpenseItem = (props) => {
         <p>{props.description}</p>
 
         <div className={classes["btn-cont"]}>
-          {props.amount >= 10000 && Premium}
+          {/* {props.amount >= 10000 && Premium} */}
           <button onClick={EditButtonHandler} className={classes["edit-btn"]}>
             Edit
           </button>

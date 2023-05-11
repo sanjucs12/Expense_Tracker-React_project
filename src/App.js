@@ -9,22 +9,25 @@ import ContactDetails from "./components/Login/ContactDetails";
 import LoadingSpinner from "./components/Loadingspinner/LoadingSpinner";
 import ExpenseForm from "./components/Expense/ExpenseForm";
 import { useSelector } from "react-redux";
+import Header from "./components/Header/Header";
+import "./App.css";
 function App() {
   const ctx = useContext(AuthContex);
-  // const item = useSelector((state) => console.log(state.expense.isisrendering));
-  // console.log(item);
+  const dark = useSelector((state) => state.expense.darkmode);
+
   //console.log(ctx);
   return (
-    <React.Fragment>
+    <div className={dark ? "light" : ""}>
+      <Header></Header>
       <Switch>
         <Route path="/contactdetails">
           <ContactDetails></ContactDetails>
         </Route>
-        {ctx.loginState && (
-          <Route path="/userpage" exact>
-            <UserPage></UserPage>
-          </Route>
-        )}
+        {/* {ctx.loginState && ( */}
+        <Route path="/userpage" exact>
+          <UserPage></UserPage>
+        </Route>
+        {/* )} */}
         <Route path="/loading">
           <LoadingSpinner></LoadingSpinner>
         </Route>
@@ -39,7 +42,7 @@ function App() {
           <Redirect to="/login" />
         </Route>
       </Switch>
-    </React.Fragment>
+    </div>
   );
 }
 

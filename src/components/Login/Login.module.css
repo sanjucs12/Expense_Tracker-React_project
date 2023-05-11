@@ -1,11 +1,12 @@
 .main-container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(
+  /* background: linear-gradient(
     45deg,
     rgb(221, 239, 234) 41%,
     rgb(242, 206, 218) 66%
-  );
+  ); */
+  background-color: inherit;
 
   display: flex;
   align-items: center;

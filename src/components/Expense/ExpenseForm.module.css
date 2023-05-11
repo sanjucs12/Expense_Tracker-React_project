@@ -2,14 +2,24 @@
   margin: 0%;
   padding: 0%;
 }
+/* #dark .ExpenseForm-container {
+  background: #46045e;
+  color: #f7f0fa;
+} */
+/* #dark .ExpenseForm input {
+  background: #b271d2;
+  color: #f7f0fa;
+} */
 .ExpenseForm-container {
+  padding: 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   /* height: 100vh; */
   min-height: 100vh;
-  background: rgb(235, 225, 225);
+  /* background: rgb(235, 225, 225); */
+  background-color: inherit;
 }
 .ExpenseForm {
   display: flex;
@@ -17,10 +27,14 @@
   flex-direction: column;
   width: 50%;
   padding: 30px 30px;
-  background: white;
-  box-shadow: 0px 0px 3px rgb(208 208 208 / 30%);
+  background: inherit;
+  box-shadow: 0px 0px 20px rgba(231, 126, 126, 0.3);
   border-radius: 4px;
 }
+/* #dark .ExpenseForm {
+  background: #8c47a6;
+  color: #f7f0fa;
+} */
 .ExpenseForm label {
   display: flex;
   align-items: center;
