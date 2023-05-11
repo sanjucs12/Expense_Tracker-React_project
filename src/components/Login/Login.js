@@ -1,81 +1,113 @@
-import React, { useRef, useState, useContext, useEffect } from "react";
+import React, { useRef } from "react";
 import classes from "./Login.module.css";
-import AuthContex from "../../Context/CreateContext";
-import ForgetPassword from "../ForgetPassword/ForgetPassword";
 
+import ForgetPassword from "../ForgetPassword/ForgetPassword";
+import { useSelector, useDispatch } from "react-redux";
+import { AuthSliceAction } from "../../store/Auth";
+import { useHistory } from "react-router-dom";
 const AuthForm = () => {
-  const ctx = useContext(AuthContex);
-  const [isLogin, setisLogin] = useState(true);
-  const [isForgetpassword, setisForgetpassword] = useState(true);
+  const History = useHistory();
+  // const ctx = useContext(AuthContex);
+  const Dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const isForgetpassword = useSelector((state) => state.auth.isForgetpassword);
+
+  const loginURL =
+    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM";
+  const signupUrl =
+    "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM";
+  const RestUrl =
+    "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM";
   const enteredEmail = useRef(null);
   const enteredPassword = useRef(null);
   const enteredconfirmPassword = useRef(null);
-  useEffect(() => {
-    if (ctx.loginState) {
-      setisLogin(true);
-    }
-  }, []);
-
-  const SubmitHandler = (event) => {
+  // LOGIN and SIGNUP handler
+  const SubmitHandler = async (event) => {
     event.preventDefault();
-
-    // const confirmPassword = enteredconfirmPassword.current.value;
     let obj = {
       email: enteredEmail.current.value,
       password: enteredPassword.current.value,
       returnSecureToken: true,
     };
 
-    if (!isLogin) {
-      const confirmPassword = enteredconfirmPassword.current.value;
-      obj.password === confirmPassword
-        ? ctx.signup(obj)
-        : console.log("please enter valid password");
-
-      //console.log("succesfully signup", obj);
+    try {
+      const response = await fetch(isLogin ? loginURL : signupUrl, {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error.message);
+      } else {
+        localStorage.setItem("id", data.idToken);
+        // setloginStates(true);
+        // History.replace("/expenseform");
+        isLogin
+          ? History.replace("/expenseform")
+          : Dispatch(AuthSliceAction.setisLogin());
+      }
+    } catch (error) {
+      alert(error.message);
     }
-    if (isLogin && obj.password.length >= 6 && isForgetpassword) {
-      //console.log("succesfully sigin", obj);
-
-      ctx.login(obj);
-    }
-    if (isLogin && !isForgetpassword) {
-      //console.log("succesfully sigin", obj);
-      //History.push("/loading")
-      obj = {
-        requestType: "PASSWORD_RESET",
-        email: enteredEmail.current.value,
-      };
-
-      ctx.forgetPassword(obj);
-    }
-    setisForgetpassword(true);
   };
+  //Toggle handler login and signup
   const authChangeHandler = () => {
-    setisLogin(!isLogin);
-    setisForgetpassword(true);
+    Dispatch(AuthSliceAction.setisLogin());
   };
+  //toggle handler Forgetpassword
   const ForgetButtonHandler = () => {
     console.log("ForgetButtonHandlerr");
-    setisForgetpassword(!isForgetpassword);
+
+    Dispatch(AuthSliceAction.setisForgetpassword());
   };
 
   let submitButton;
-  if (isLogin && isForgetpassword) {
+  if (isLogin && !isForgetpassword) {
     submitButton = "Login";
   }
   if (!isLogin) {
     submitButton = "SignUp";
   }
-  if (isLogin && !isForgetpassword) {
+  if (!isLogin && isForgetpassword) {
     submitButton = "Click to Reset";
   }
+  const ForgetPasswordHandler = async () => {
+    History.push("/loading");
+    let obj = {
+      requestType: "PASSWORD_RESET",
+      email: enteredEmail.current.value,
+    };
+    History.push("/loading");
+    try {
+      const response = await fetch(RestUrl, {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error.message);
+      } else {
+        History.push("/login");
+        Dispatch(AuthSliceAction.setisLogin());
+        alert("User has successfully signed up.");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <React.Fragment>
       <div className={classes["main-container"]}>
         <div className={classes["email-container"]}>
-          <h1>{isLogin ? "Login" : "Create Account"}</h1>
-
+          <h1>{isLogin && "Login"}</h1>
+          <h1>{!isLogin && !isForgetpassword && "Create Account"}</h1>
+          <h1>{isForgetpassword && !isLogin && "Reset Password"}</h1>
           <form className={classes["form-email"]} onSubmit={SubmitHandler}>
             <input
               type="email"
@@ -83,27 +115,40 @@ const AuthForm = () => {
               ref={enteredEmail}
             ></input>
 
-            <input
-              type="password"
-              placeholder="enter your password"
-              ref={enteredPassword}
-            ></input>
+            {!isForgetpassword && (
+              <input
+                type="password"
+                placeholder="enter your password"
+                ref={enteredPassword}
+              ></input>
+            )}
 
-            {!isLogin && (
+            {!isLogin && !isForgetpassword && (
               <input
                 type="password"
                 placeholder="confirm password"
                 ref={enteredconfirmPassword}
               ></input>
             )}
-            <button type="submit">{submitButton}</button>
+            {!isForgetpassword ? (
+              <button type="submit">{submitButton}</button>
+            ) : (
+              <button type="button" onClick={ForgetPasswordHandler}>
+                Click TO Reset
+              </button>
+            )}
           </form>
           <button onClick={authChangeHandler} className={classes.toggle}>
-            {isLogin ? "Create new account" : "Login with existing account"}
+            {isLogin && "Create new account"}
+            {!isLogin && !isForgetpassword && "Login with existing account"}
           </button>
 
           <ForgetPassword
-            name="forget password"
+            name={
+              !isForgetpassword
+                ? "forget password"
+                : "Login with existing account"
+            }
             className={classes.toggle}
             onhandleclick={ForgetButtonHandler}
           ></ForgetPassword>

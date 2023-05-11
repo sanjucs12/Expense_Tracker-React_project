@@ -1,11 +1,14 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useEffect } from "react";
 import classes from "./ExpenseForm.module.css";
 import ExpenseList from "./ExpenseList";
-import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
+
+import { ExpenseSliceAction } from "../../store/Expense";
+import { useSelector, useDispatch } from "react-redux";
 
 const ExpenseForm = () => {
-  const ctx = useContext(ExpenseContext);
-  const [isupdate, setisupdate] = useState(false);
+  const Dispatch = useDispatch();
+  const isupdate = useSelector((state) => state.expense.isupdate);
+  const temp = useSelector((state) => state.expense.tempitem);
 
   const enteredAmount = useRef(null);
   const enteredCategorys = useRef(null);
@@ -15,7 +18,7 @@ const ExpenseForm = () => {
     event.preventDefault();
     //console.log(enteredCategorys.current.value);
     let itemid = localStorage.getItem("itemid");
-    console.log(itemid);
+    // console.log(itemid);
     const ExpenseObject = {
       amount: enteredAmount.current.value,
       categorys: enteredCategorys.current.value,
@@ -23,7 +26,7 @@ const ExpenseForm = () => {
     };
     try {
       const response = await fetch(
-        `https://expense-tracker-react-ap-92e37-default-rtdb.firebaseio.com/expense/${
+        `https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/expense/${
           isupdate ? itemid : ""
         }.json`,
         {
@@ -35,14 +38,12 @@ const ExpenseForm = () => {
         }
       );
       const data = await response.json();
-      //console.log(data);
-      ctx.getItemList();
-      setisupdate(false);
+
+      Dispatch(ExpenseSliceAction.updateList(ExpenseObject));
+
       enteredAmount.current.value = null;
       enteredCategorys.current.value = null;
       enteredDescription.current.value = null;
-      //ctx.AddItem(ExpenseObject);
-      // setExpenseObj([...dummyobj, ExpenseObject]);
     } catch (error) {
       console.log(error.message);
     }
@@ -51,46 +52,43 @@ const ExpenseForm = () => {
   };
 
   useEffect(() => {
-    ctx.getItemList();
-    // const ExpenseFormHandler = async () => {
-    //   try {
-    //     const response = await fetch(
-    //       "https://expense-tracker-react-ap-92e37-default-rtdb.firebaseio.com/expense.json",
-    //       {
-    //         method: "GET",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //       }
-    //     );
-    //     const data = await response.json();
-    //     //console.log(data);
-    //     const transformeddata = [];
-    //     for (const key in data) {
-    //       const Obj = {
-    //         id: key,
-    //         ...data[key],
-    //       };
-    //       transformeddata.push(Obj);
-    //     }
-    //     // setExpenseObj([...transformeddata]);
-    //     ctx.AddItem(transformeddata);
-    //     // console.log(transformeddata);
-    //   } catch (error) {
-    //     console.log(error.message);
-    //   }
-    // };
-    //ExpenseFormHandler();
-  }, []);
+    // ctx.getItemList();
+    const ExpenseFormHandler = async () => {
+      try {
+        const response = await fetch(
+          "https://expense-tracker-auth-a692a-default-rtdb.firebaseio.com/expense.json",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        //console.log(data);
+        const transformeddata = [];
+        for (const key in data) {
+          const Obj = {
+            id: key,
+            ...data[key],
+          };
+          transformeddata.push(Obj);
+        }
+        Dispatch(ExpenseSliceAction.AddItem(transformeddata));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    ExpenseFormHandler();
+  }, [temp]);
   const onUpdateHandler = (item) => {
-    setisupdate(true);
+    //setisupdate(true);
+    Dispatch(ExpenseSliceAction.setIsupdate(true));
     enteredAmount.current.value = item.amount;
     enteredCategorys.current.value = item.categorys;
     enteredDescription.current.value = item.description;
     localStorage.setItem("itemid", item.id);
-    console.log(item);
-    //console.log(id);
-    // url=
+    // console.log(item);
   };
 
   return (

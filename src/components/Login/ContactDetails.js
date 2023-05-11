@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect, useCallback } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import AuthContex from "../../Context/CreateContext";
 
 import classes from "./ContactDetails.module.css";
@@ -13,7 +13,7 @@ const ContactDetails = () => {
     const getuserData = async () => {
       try {
         const response = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBsbvkR0CzVKbBMzfe0JhJEq-BpJfRc3CA",
+          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
           {
             method: "POST",
             body: JSON.stringify({

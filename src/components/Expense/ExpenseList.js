@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import ExpenseItem from "./ExpenseItem";
 import classes from "./ExpenseList.module.css";
-import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
+
+import { useSelector } from "react-redux";
 
 const ExpenseList = (props) => {
-  const ctx = useContext(ExpenseContext);
-  console.log(ctx.Expenseobject);
+  const item = useSelector((state) => state.expense.items);
+  console.log(item);
+  // console.log(ExpenseSliceAction);
 
-  let EachListItem = ctx.Expenseobject.map((item, index) => (
+  let EachListItem = item.map((item, index) => (
     <ExpenseItem
       onUpdate={props.onUpdate}
       id={item.id}
