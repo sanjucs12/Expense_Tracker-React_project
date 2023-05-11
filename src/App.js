@@ -8,7 +8,7 @@ import AuthContex from "./Context/CreateContext";
 import ContactDetails from "./components/Login/ContactDetails";
 function App() {
   const ctx = useContext(AuthContex);
-  console.log(ctx);
+  //console.log(ctx);
   return (
     <React.Fragment>
       <Switch>

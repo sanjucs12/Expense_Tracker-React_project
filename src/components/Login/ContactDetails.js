@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useEffect, useCallback } from "react";
 import AuthContex from "../../Context/CreateContext";
 
 import classes from "./ContactDetails.module.css";
@@ -6,6 +6,37 @@ const ContactDetails = () => {
   const ctx = useContext(AuthContex);
   const enteredName = useRef(null);
   const enteredUrl = useRef(null);
+
+  //getting user details
+
+  useEffect(() => {
+    const getuserData = async () => {
+      try {
+        const response = await fetch(
+          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBHfDdJCB5KGcrwcnmpsK7V5Q8haFmqDGM",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              idToken: localStorage.getItem("id"),
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        if (data.error) {
+          throw new Error(data.error.message);
+        } else {
+          enteredName.current.value = data.users[0].displayName;
+          enteredUrl.current.value = data.users[0].photoUrl;
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+    getuserData();
+  }, []);
 
   // form handler function
 
@@ -18,7 +49,6 @@ const ContactDetails = () => {
       returnSecureToken: true,
     };
     if (obj.displayName !== "" && obj.photoUrl !== " ") {
-      console.log("hi");
       ctx.updateUser(obj);
     }
     //console.log("ContactDetailsHandle");
