@@ -116,14 +116,14 @@ const AuthForm = () => {
           <form className={classes["form-email"]} onSubmit={SubmitHandler}>
             <input
               type="email"
-              placeholder="enter your mailid"
+              placeholder="Enter your E-mail ID"
               ref={enteredEmail}
             ></input>
 
             {!isForgetpassword && (
               <input
                 type="password"
-                placeholder="enter your password"
+                placeholder="Enter your password"
                 ref={enteredPassword}
               ></input>
             )}
@@ -139,7 +139,7 @@ const AuthForm = () => {
               <button type="submit">{submitButton}</button>
             ) : (
               <button type="button" onClick={ForgetPasswordHandler}>
-                Click TO Reset
+                Click to RESET
               </button>
             )}
           </form>
@@ -151,7 +151,7 @@ const AuthForm = () => {
           <ForgetPassword
             name={
               !isForgetpassword
-                ? "forget password"
+                ? "Forgot password"
                 : "Login with existing account"
             }
             className={classes.toggle}
