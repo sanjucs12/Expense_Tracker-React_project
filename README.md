@@ -1,4 +1,4 @@
-https://my-expense-tracker-react-app.netlify.app/login
+https://my-expense-tracker-react-app.netlify.app/
 
 
 -A simple platform using React to keep the track of expenses done by a user
